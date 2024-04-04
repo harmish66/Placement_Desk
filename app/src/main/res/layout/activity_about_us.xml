@@ -1,18 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutUsActivity">
+    android:orientation="vertical">
 
+    <!-- Header -->
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="About Us"
-        android:textSize="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:gravity="center" />
+
+    <!-- Person 1 Details -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imageViewPerson1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/harmish_photo"
+            android:scaleType="centerCrop"
+            android:contentDescription="Person 1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/textViewPerson1Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harmish Sejpal"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textViewPerson1Role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D22IT208"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Person 2 Details -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imageViewPerson2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/avatar"
+            android:scaleType="centerCrop"
+            android:contentDescription="Person 2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/textViewPerson2Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shubh Makawana"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textViewPerson2Role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D22IT208"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Additional Info -->
+   <!-- <TextView
+        android:id="@+id/textViewAdditionalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Additional Information"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:gravity="center" />-->
+
+    <!-- Add more information about the project, collaboration, etc. -->
+
+</LinearLayout>

@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     LinearLayout history, material, question, aboutus;
 
+    LinearLayout category1, category2, category3, category4;
+    String message;
+    String message2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,31 +45,71 @@ public class MainActivity extends AppCompatActivity {
         question = findViewById(R.id.question);
         aboutus = findViewById(R.id.aboutus);
 
+        category1 = findViewById(R.id.category1);
+        category2 = findViewById(R.id.category2);
+        category3 = findViewById(R.id.category3);
+        category4 = findViewById(R.id.category4);
+
+
+        Question();
+        Material();
+
+        category1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, HistoryActivity.class);
+                startActivity(i);
+            }
+        });
+        category2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, MaterialActivity.class);
+                i.putExtra("url2", message2);
+                startActivity(i);
+            }
+        });
+        category3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, AboutUsActivity.class);
+                startActivity(i);
+            }
+        });
+         category4.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                 startActivity(i);
+             }
+         });
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,HistoryActivity.class);
+                Intent i = new Intent(MainActivity.this, HistoryActivity.class);
                 startActivity(i);
             }
         });
         material.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,MaterialActivity.class);
+                Intent i = new Intent(MainActivity.this, MaterialActivity.class);
+                i.putExtra("url2", message2);
                 startActivity(i);
             }
         });
         question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,QuestionActivity.class);
+                Intent i = new Intent(MainActivity.this, QuestionActivity.class);
+                i.putExtra("url", message);
                 startActivity(i);
             }
         });
         aboutus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this,AboutUsActivity.class);
+                Intent i = new Intent(MainActivity.this, AboutUsActivity.class);
                 startActivity(i);
             }
         });
@@ -76,6 +120,42 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
+    }
+
+    public void Material() {
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Question").child("Material");
+//        databaseReference = FirebaseDatabase.getInstance().getReference().child("Question").child("Question_placement");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                message2 = snapshot.getValue(String.class);
+                Log.d("TAG1010", "onDataChange: " + message2);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Error Loading Pdf", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void Question() {
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Question").child("Question_placement");
+//        databaseReference = FirebaseDatabase.getInstance().getReference().child("Question").child("Question_placement");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                message = snapshot.getValue(String.class);
+                Log.d("TAG1010", "onDataChange: " + message);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Error Loading Pdf", Toast.LENGTH_SHORT).show();
             }
         });
     }
